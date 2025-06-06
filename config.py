@@ -9,15 +9,20 @@ load_dotenv()
 # Get this value from my.telegram.org/apps
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
-
-
+KEY = getenv("KEY", None)
 # Get your token from @BotFather on Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN")
 
 # Get your mongo url from cloud.mongodb.com
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
+
+
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 600))
+
+API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
+API_KEY = getenv("API_KEY", None) # youtube song api key, generate free key or buy paid plan from panel.thequickearn.xyz
+
 
 
 # Set this to true if you want post ads automatically
@@ -26,8 +31,6 @@ ADS_MODE = getenv("ADS_MODE", None)
 # Chat id of a group for logging bot's activities
 LOGGER_ID = int(getenv("LOGGER_ID", None))
 
-API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
-API_KEY = getenv("API_KEY", None) # youtube song api key, generate free key or buy paid plan from panel.thequickearn.xyz
 
 # Get this value from @FallenxBot on Telegram by /id
 OWNER_ID = int(getenv("OWNER_ID", 1356469075))
@@ -40,7 +43,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/NKMODNK7/JerryX",
+    "https://github.com/masoom70/Jerry",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv(
@@ -85,14 +88,17 @@ autoclean = []
 confirmer = {}
 
 
+
+
+
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://envs.sh/WJm.jpg"
+    "START_IMG_URL", "https://envs.sh/WJ-.jpg"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://envs.sh/WJm.jpg"
+    "PING_IMG_URL", "https://envs.sh/WJ-.jpg"
 )
 PLAYLIST_IMG_URL = "https://envs.sh/_B5.jpg"
-STATS_IMG_URL = "https://envs.sh/WJm.jpg"
+STATS_IMG_URL = "https://envs.sh/WJ-.jpg"
 TELEGRAM_AUDIO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
 TELEGRAM_VIDEO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
 STREAM_IMG_URL = "https://te.legra.ph/file/bd995b032b6bd263e2cc9.jpg"
