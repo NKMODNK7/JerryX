@@ -3,7 +3,7 @@ import time
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from youtubesearchpython.__future__ import VideosSearch
+from py_yt import VideosSearch
 
 import config
 from AnonXMusic import app
@@ -88,6 +88,7 @@ async def start_pm(client, message: Message, _):
             photo=config.START_IMG_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
+            effect_id=5159385139981059251,
         )
         if await is_on_off(2):
             return await app.send_message(
@@ -115,15 +116,27 @@ async def welcome(client, message: Message):
         try:
             language = await get_lang(message.chat.id)
             _ = get_string(language)
+
+            
             if await is_banned_user(member.id):
                 try:
                     await message.chat.ban_member(member.id)
                 except:
                     pass
+
+
             if member.id == app.id:
+
+                if message.from_user and message.from_user.id in BANNED_USERS:
+                    await message.reply_text(
+                        f"⚠️ This bot was added by a banned user ({message.from_user.mention}). Leaving group..."
+                    )
+                    return await app.leave_chat(message.chat.id)
+
                 if message.chat.type != ChatType.SUPERGROUP:
                     await message.reply_text(_["start_4"])
                     return await app.leave_chat(message.chat.id)
+
                 if message.chat.id in await blacklisted_chats():
                     await message.reply_text(
                         _["start_5"].format(
@@ -135,6 +148,7 @@ async def welcome(client, message: Message):
                     )
                     return await app.leave_chat(message.chat.id)
 
+                
                 out = start_panel(_)
                 await message.reply_photo(
                     photo=config.START_IMG_URL,
@@ -148,5 +162,6 @@ async def welcome(client, message: Message):
                 )
                 await add_served_chat(message.chat.id)
                 await message.stop_propagation()
+
         except Exception as ex:
             print(ex)
